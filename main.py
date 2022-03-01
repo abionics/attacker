@@ -53,7 +53,7 @@ async def start_one():
 
             proxies = {"http": "193.38.234.144:45785"}
             auth = HTTPProxyAuth("Selvburykh", "Q7o3OqQ")
-            url="https://www.ukr.net/"
+
             async with CloudflareScraper(timeout=TIMEOUT, trust_env=True) as session:
                 success = await attempt(session, url)
         except Exception as e:
