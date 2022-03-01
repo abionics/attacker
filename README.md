@@ -19,6 +19,11 @@
 5) `python3 main.py`
 * при проблемах з pip3 на linux юзайте `apt install python3-pip`
 
-Про усі проблеми пишіть у issues, буду намагатися допомогти
+### З використанням Google Colab
+Запускайте **[цей блокнот](https://colab.research.google.com/drive/1eOynwkRAmYcCRIOl7IDVitmrL9NbEQss)**,
+дякую [vrkssi](https://www.instagram.com/vrkssi/) за його створення!
 
-Також координуємо наші атаки у группах, наприклад https://t.me/ddosRussians (~13к юзерів)
+### Координація
+Координуємо наші атаки у группах, наприклад https://t.me/ddos_kotyky та https://t.me/itarmyofukraine2022
+
+Про усі проблеми пишіть у issues, буду намагатися допомогти
