@@ -17,7 +17,7 @@ TIMEOUT = ClientTimeout(
     sock_connect=10,
 )
 CUSTOM_PROXY = None  # can be like 'http://login:username@1.2.3.4:5678' OR 'http://1.2.3.4:5678'
-CUSTOM_PROXIES_FILE = None  # name of file with list of proxies, each one in separate line
+CUSTOM_PROXIES_FILE = 'list.txt'  # name of file with list of proxies, each one in separate line
 REQUESTS_PER_SITE = 50
 PARALLEL_COUNT = 20
 SHOW_REQUEST_EXCEPTIONS = False
@@ -36,17 +36,18 @@ def main():
 async def start_one():
     while True:
         try:
+            '''
             host = random.choice(HOSTS)
             content = requests.get(host).content
             data = json.loads(content)
             url = data['site']['url']
             url = _fix_url(url, force_https=FORCE_HTTPS)
+            '''
             async with CloudflareScraper(timeout=TIMEOUT, trust_env=True) as session:
-                success = await attempt(session, url)
+               # success = await attempt(session, url)
+                success = False
                 if not success:
-                    if CUSTOM_PROXY:
-                        proxies = [CUSTOM_PROXY]
-                    elif CUSTOM_PROXIES_FILE:
+                    if CUSTOM_PROXIES_FILE:
                         proxies = _load_proxies(CUSTOM_PROXIES_FILE)
                     else:
                         proxies = [
@@ -55,8 +56,8 @@ async def start_one():
                         ]
                     random.shuffle(proxies)
                     for proxy in proxies:
-                        proxy = _fix_url(proxy)
-                        success = await attempt(session, url, proxy)
+                        url = _fix_url(proxy)
+                        success = await attempt(session, url)
                         if success:
                             break
         except Exception as e:
@@ -70,7 +71,7 @@ def _load_proxies(filename: str) -> list:
 
 def _fix_url(url: str, force_https: bool = False) -> str:
     if not url.startswith('http'):
-        'http://' + url
+        url = 'http://' + url
     if force_https:
         url = url.replace('http://', 'https://')
     return url
