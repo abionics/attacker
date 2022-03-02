@@ -38,24 +38,27 @@ def main():
 async def start_one():
     while True:
         try:
-            host = random.choice(HOSTS)
-            content = requests.get(host).content
-            data = json.loads(content)
 
             phost = random.choice(PROX)
             pcontent = requests.get(phost).content
             pdata = json.loads(pcontent)
+            plength = len(pdata)
+            pind = random.randint(1, plength)
+            proxies = pdata[pind]['ip']
+            auth = pdata[pind]['auth']
+            # auth = HTTPProxyAuth("Selvburykh", "Q7o3OqQ")
 
+            host = random.choice(HOSTS)
+            content = requests.get(host).content
+            data = json.loads(content)
             length = len(data)
             ind = random.randint(1, length)
             url = data[ind]['page']
-           # prox = pdata[ind]['page']
-
-            proxies = {"http": "193.38.234.144:45785"}
-            auth = HTTPProxyAuth("Selvburykh", "Q7o3OqQ")
 
             async with CloudflareScraper(timeout=TIMEOUT, trust_env=True) as session:
+                # success = await attempt(session, url, proxies)
                 success = await attempt(session, url)
+
         except Exception as e:
             logger.warning(f'Exception, retrying, exception={e}')
 
@@ -103,3 +106,4 @@ if __name__ == '__main__':
     )
     disable_warnings()
     main()
+
