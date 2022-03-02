@@ -1,9 +1,10 @@
 ## Гайд по DDoS сайтів окупантів
-Отличие сборки - перечень целей в файле list.txt
+Отличие сборки - перечень целей динамически обновляется
+https://raw.githubusercontent.com/opengs/uashieldtargets/master/sites.json
 
 ### Запуск через докер (потрібен попередньо встановлений докер і docker-compose)
 Інструкція як встановити докер [тут](/docs/docker_installation.md)
-1) `git clone https://github.com/abionics/attacker`
+1) `git clone https://github.com/tsergiosoft/attacker.gitr`
 2) `cd attacker`
 3) `./start.sh`
 4) "Щоб призупинити зашквар і трохи провітрити хату" `./stop.sh`
