@@ -2,7 +2,7 @@
 docker-compose down
 docker rm -f $(docker ps --format "{{.ID}}")
 git init .
-docker image prune --all
+#docker image prune --all
 git pull origin master
 
 count=$1
