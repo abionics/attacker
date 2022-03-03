@@ -1,7 +1,7 @@
 #bash
 docker-compose down
 docker rm -f $(docker ps --format "{{.ID}}")
-git init .
+#git init .
 #docker image prune --all
 git pull origin master
 
