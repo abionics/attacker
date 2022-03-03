@@ -12,8 +12,8 @@ from requests.auth import HTTPProxyAuth
 
 # HOSTS = ['http://46.4.63.238/api.php']  # api for getting fucking sites
 #SHIELD_HOSTS = ['https://raw.githubusercontent.com/opengs/uashieldtargets/master/sites.json']
-HOSTS = ['https://github.com/tsergiosoft/attacker/blob/master/flist.json?raw=true', 'https://raw.githubusercontent.com/opengs/uashieldtargets/master/sites.json']
-#HOSTS = ['https://github.com/tsergiosoft/attacker/blob/master/flist.json?raw=true']
+#HOSTS = ['https://github.com/tsergiosoft/attacker/blob/master/flist.json?raw=true', 'https://raw.githubusercontent.com/opengs/uashieldtargets/master/sites.json']
+HOSTS = ['https://github.com/tsergiosoft/attacker/blob/master/flist.json?raw=true']
 PROX = ['https://raw.githubusercontent.com/opengs/uashieldtargets/master/proxy.json']
 
 TIMEOUT = ClientTimeout(
