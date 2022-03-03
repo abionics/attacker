@@ -13,13 +13,13 @@ for i in {1..3}; do
 
   count=$1
   if [ -z "$count" ]; then
-   count=1
+   count=3
   fi
   docker-compose up --build -d --scale app=$count
 
-  echo "Sleep 30..."
+  echo "Sleep 120..."
 
-  sleep 30 # run time
+  sleep 120 # run time
 
   echo "down..."
   docker-compose down
