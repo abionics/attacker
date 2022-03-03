@@ -5,6 +5,7 @@ echo "Starting DRipper containers..."
  # docker rm -f $(docker ps --format "{{.ID}}")
  # docker image prune --all --force
  git init .
+ git stash
  git pull origin master
 
   count=$1
