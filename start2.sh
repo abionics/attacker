@@ -21,4 +21,4 @@ echo "Starting DRipper containers..."
   docker-compose down
 
   sleep 2
-echo ".......................END START2.SH.................."
+echo "......................END START2.SH.................."
