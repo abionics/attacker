@@ -10,7 +10,7 @@ echo "Starting DRipper containers..."
 
   count=$1
   if [ -z "$count" ]; then
-   count=3
+   count=5
   fi
   docker-compose up --build -d --scale app=$count
 
