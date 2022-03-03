@@ -1,7 +1,6 @@
 #bash
 #cd attacker
-
-chmod ugo+x start2.sh
+#chmod ugo+x start2.sh
 
 for i in {1..3}; do
 
