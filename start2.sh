@@ -18,7 +18,6 @@ echo "Starting DRipper containers..."
   sleep 30 # run time
 
   echo "down..."
-  # docker-compose down
-
-  sleep 2
+  
+  docker-compose down
 echo "......................END START2.SH.................."
