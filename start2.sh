@@ -15,7 +15,7 @@ echo "Starting DRipper containers..."
 
   echo "Sleep 120..."
 
-  sleep 120 # run time
+  sleep 30 # run time
 
   echo "down..."
   # docker-compose down
