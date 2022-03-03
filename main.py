@@ -54,6 +54,7 @@ async def start_one():
             content = requests.get(host).content
             # , headers={'Cache-Control': 'no-cache'}
             data = json.loads(content)
+            print(data)
             length = len(data)
             ind = random.randint(0, length-1)
             url = data[ind]['page']
