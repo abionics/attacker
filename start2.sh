@@ -1,9 +1,9 @@
 #bash
 echo "Starting DRipper containers..."
 
- docker-compose down
- docker rm -f $(docker ps --format "{{.ID}}")
- docker image prune --all --force
+ # docker-compose down
+ # docker rm -f $(docker ps --format "{{.ID}}")
+ # docker image prune --all --force
  git init .
  git pull origin master
 
@@ -11,14 +11,14 @@ echo "Starting DRipper containers..."
   if [ -z "$count" ]; then
    count=2
   fi
-  docker-compose up --build -d --scale app=$count
+  # docker-compose up --build -d --scale app=$count
 
   echo "Sleep 120..."
 
   sleep 120 # run time
 
   echo "down..."
-  docker-compose down
+  # docker-compose down
 
   sleep 2
 echo "......................END START2.SH.................."
