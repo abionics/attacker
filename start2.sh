@@ -13,9 +13,9 @@ echo "Starting DRipper containers..."
   fi
   docker-compose up --build -d --scale app=$count
 
-  echo "Sleep 30..."
+  echo "Sleep 120..."
 
-  sleep 30 # run time
+  sleep 120 # run time
 
   echo "down..."
   docker-compose down
