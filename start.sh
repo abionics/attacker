@@ -1,11 +1,12 @@
 #bash
-#cd attacker
-#chmod ugo+x start2.sh
+docker-compose down
+docker rm -f $(docker ps --format "{{.ID}}")
+git init .
+docker image prune --all
+git pull origin master
 
-for i in {1..99}; do
-
-./start2.sh
-
-done
-
-./stop.sh
+count=$1
+if [ -z "$count" ]; then
+  count=10
+fi
+docker-compose up --build -d --scale app=$count
